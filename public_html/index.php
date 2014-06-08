@@ -32,16 +32,15 @@
 						<li><a href="https://www.facebook.com/blushingdeadly" target="_blank">Facebook</a></li>
 						<li><a href="https://twitter.com/BlushingDeadly" target="_blank">Twitter</a></li>
 						<li><a href="https://www.youtube.com/channel/UC7u2hjBgN59HAAtEUZTCcbw/" target="_blank">YouTube</a></li>
-						<li><a href="https://github.com/madisonflaherty/BlushingDeadlyWebsite" target="_blank">GitHub</a></li>
+                                                <li><a href="https://github.com/madisonflaherty/BlushingDeadlyWebsite" target="_blank">GitHub</a></li>
 					</ol>	
 				</div>
 			</div><!-- End of floating nav bar -->
-			<!-- CONTENT -->
 			<div class="col-xs-9" id="notSidebar">
 				<div class="myContent">
 					<div class="blog-main" >
 						<div class="row" id="buffered">
-							<div class="blog-main"><!-- Used for more than just blog-->
+							<div class="blog-main"><!-- used for more than just blog-->
 								<!--Start of Mobile Only Section -->
 								<div class="upperMobileBar" id="upperMobile">
 									<a href="/"><img class="mobileLogo" src="/images/transparentMobileLogo.png" alt="mobileLogo" width=100%></a>
@@ -61,17 +60,11 @@
 									<div class="spacer"></div>
 								</div><!-- End of mobile only section -->
 								<!-- CONTENT -->
-								<div class="blog-post col-xs-12">
-									<!-- content goe in this div! -->
-									<h3 class="blog-post-title">Website Up and <i>Almost</i> Running!</h3>
-									<p class="blog-post-meta">Posted On May 28, 2014 by <a href="#">Madison</a></p>
-									<div class="blog-content">
-										<p>We are very excited as we get off the ground and are starting to pump out our website.</p>
-										<p>This of course is mearly a test post to make sure everything is running smoothly and will
-										be replaced in the next few days with a real post! Be sure to check back regularly for our
-										official startup!</p>
-									</div><!--End of this update's blog-content-->
-								</div><!-- END PAGE CONTENT -->
+									<!--content goes in this div! -->
+										<?php
+                                                                                include 'display.php';
+                                                                                ?>
+								<!-- END PAGE CONTENT -->
 							</div>
 						</div>
 					</div>
@@ -82,9 +75,21 @@
 	</div>
 	<!-- END CONTENT -->
 	<!-- Footer start -->
-	<div class="spacer">
+	<div class="spacer"></div>
 	<div id ="footer">
 		<p class = "text-muted">Copyright 2014 Blushing Deadly Games - All Rights Reserved</p>
 	</div><!-- end footer -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+	</script>
+	<script>
+		//Forces the page to wait until the php has finished loading so that everything loads
+		//together. 
+		$(document).ready(function() {
+			$("#outerWrapper").hide();
+		});
+		$(window).load(function() {
+			$("#outerWrapper").show();
+		});
+	</script>
 </body>
 </html>

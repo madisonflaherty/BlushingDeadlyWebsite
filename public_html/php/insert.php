@@ -4,17 +4,17 @@
 		<meta name = "viewport" content="width=device-width, initial-scale=1.0">
 		<title> Blushing Deadly Games&nbsp;|&nbsp;Indie Game Development Team </title>
 		<!-- Bootstrap core CSS -->
-		<link href="bootstrap-3.1.1-dist/css/bootstrap.css" rel="stylesheet">
+		<link href="http://blushingdeadly.com/bootstrap-3.1.1-dist/css/bootstrap.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
-		<link href="bootstrap-3.1.1-dist/css/offcanvas.css" rel="stylesheet">
-		<link href="bootstrap-3.1.1-dist/css/blog.css" rel="stylesheet">	
+		<link href="http://blushingdeadly.com/bootstrap-3.1.1-dist/css/offcanvas.css" rel="stylesheet">
+		<link href="http://blushingdeadly.com/bootstrap-3.1.1-dist/css/blog.css" rel="stylesheet">	
 	</head>
 <body>
 	<div class="myWrapper">
 		<!-- Following used to make the floating navbar for desktop version -->
 		<div class="row">
 			<div class="col-xs-3 sidebar-offcanvas" id="sidebar" role="navigation">
-				<a href="/"><img src="/images/transparentWebsiteLogo.png" alt="Logo" width="100%"></a>
+				<img src="/images/transparentWebsiteLogo.png" alt="Logo" width="100%">
 				<div class="spacer"></div>
 				<div class="aboutBox">
 					<b>What is Blushing Deadly Games?</b>  An independent game development team based in Eastern Pennsylvania.
@@ -29,22 +29,20 @@
 				<div class="aboutBox" id="sidebar" role="navigation">
 					<h4>Connect</h4>
 					<ol class="list-unstyled">
-						<li><a href="https://www.facebook.com/blushingdeadly" target="_blank">Facebook</a></li>
+						<li><a href="#" target="_blank">GitHub</a></li>
 						<li><a href="https://twitter.com/BlushingDeadly" target="_blank">Twitter</a></li>
-						<li><a href="https://www.youtube.com/channel/UC7u2hjBgN59HAAtEUZTCcbw/" target="_blank">YouTube</a></li>
-						<li><a href="https://github.com/madisonflaherty/BlushingDeadlyWebsite" target="_blank">GitHub</a></li>
+						<li><a href="#" target="_blank">Facebook</a></li>
 					</ol>	
 				</div>
 			</div><!-- End of floating nav bar -->
-			<!-- CONTENT -->
 			<div class="col-xs-9" id="notSidebar">
 				<div class="myContent">
 					<div class="blog-main" >
 						<div class="row" id="buffered">
-							<div class="blog-main"><!-- Used for more than just blog-->
+							<div class="blog-main"><!-- used for more than just blog-->
 								<!--Start of Mobile Only Section -->
 								<div class="upperMobileBar" id="upperMobile">
-									<a href="/"><img class="mobileLogo" src="/images/transparentMobileLogo.png" alt="mobileLogo" width=100%></a>
+									<img class="mobileLogo" src="/images/transparentMobileLogo.png" alt="mobileLogo" width=100%>
 									<div class="spacer"></div>
 									<div class="aboutBox" id="mobileOnly">
 										<b>What is Blushing Deadly Games?</b>  An independent game development team based in Eastern Pennsylvania.
@@ -61,16 +59,36 @@
 									<div class="spacer"></div>
 								</div><!-- End of mobile only section -->
 								<!-- CONTENT -->
-								<div class="blog-post col-xs-12">
-									<!-- content goe in this div! -->
-									<h3 class="blog-post-title">Website Up and <i>Almost</i> Running!</h3>
-									<p class="blog-post-meta">Posted On May 28, 2014 by <a href="#">Madison</a></p>
-									<div class="blog-content">
-										<p>We are very excited as we get off the ground and are starting to pump out our website.</p>
-										<p>This of course is mearly a test post to make sure everything is running smoothly and will
-										be replaced in the next few days with a real post! Be sure to check back regularly for our
-										official startup!</p>
-									</div><!--End of this update's blog-content-->
+								<div class="col-xs-12">
+									<!--content goes in this div! -->
+									<div class="blog-post">
+										<?php
+										$con=mysqli_connect("someHost", "someUser", "somePassword", "someDatabase");
+										if (mysqli_connect_errno()) {
+											echo "Failed to connect to MYSQL: " . mysqli_connect_error();
+										}
+
+										//escape variables
+										$blog_post_title = mysqli_real_escape_string($con, $_POST['blog-post-title']);
+										$day = mysqli_real_escape_string($con, $_POST['day']);
+										$month = mysqli_real_escape_string($con, $_POST['month']);
+										$year = mysqli_real_escape_string($con, $_POST['year']);
+										$blog_post_author = mysqli_real_escape_string($con, $_POST['author']);
+										$blog_post_content = mysqli_real_escape_string($con, $_POST['blog-content']);
+
+										$sql="INSERT INTO newsStorer (title, day, month ,year, content, author) VALUES ('$blog_post_title', '$day', '$month', '$year', '$blog_post_content', '$blog_post_author')";
+										if(!mysqli_query($con,$sql)){
+											die('Error: ' .mysqli_error($con));
+										}
+										echo "<div class='blog-post-title'>";
+										echo "	Your entry was added successfully.";
+										echo "</div>";
+										echo "<div class='blog-content'>";
+										echo "	You may now either make <a href= '/someLink.html'>another post</a> or return to <a href='/'>Blushing Deadly's Index</a>.";
+
+										mysqli_close($con);
+										?>
+									</div>
 								</div><!-- END PAGE CONTENT -->
 							</div>
 						</div>
@@ -80,9 +98,10 @@
 			</div>
 		</div>
 	</div>
+	</div>
 	<!-- END CONTENT -->
 	<!-- Footer start -->
-	<div class="spacer">
+	<div class="spacer"></div>
 	<div id ="footer">
 		<p class = "text-muted">Copyright 2014 Blushing Deadly Games - All Rights Reserved</p>
 	</div><!-- end footer -->
